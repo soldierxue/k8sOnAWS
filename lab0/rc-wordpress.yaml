@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: rc-wordpress
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        name: wordpress
+    spec:
+      containers:
+      - name: wordpress
+        image: wordpress
+        ports:
+        - containerPort: 80
+        env:
+          - name: DB_ENV_DBUSER
+            value: user
+          - name: DB_ENV_DBPASS
+            value: mypassword
+          - name: DB_ENV_DBNAME
+            value: mydb
